@@ -2,7 +2,6 @@ class Genre
   # has many songs
   # has many artists through songs
 
-  attr_accessor :songs, :artists
   attr_reader :name
 
   def initialize(name)
@@ -13,6 +12,10 @@ class Genre
 
   def artists
     self.songs.map {|song| song.artist}.uniq
+  end
+
+  def songs
+    Song.all.find_all {|song| song.genre == self}
   end
 
 end

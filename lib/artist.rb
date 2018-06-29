@@ -4,7 +4,6 @@ class Artist
   # has many songs
   # has many genres through songs
 
-  attr_accessor :songs
   attr_reader :name
 
   @@all = []
@@ -15,7 +14,6 @@ class Artist
 
   def initialize(name)
     @name = name
-    @songs = []
     Artist.all << self
   end
 
@@ -23,8 +21,12 @@ class Artist
     var = Song.new(name, self, genre)
   end
 
+  def songs
+    Song.all.find_all {|song| song.artist == self}
+  end
+
   def song_names
-    songs.map { |song| song.name}
+    self.songs.map { |song| song.name}
   end
 
   def genres
