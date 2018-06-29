@@ -10,10 +10,6 @@ class Appointment
     @doctor = doctor
     @date = date
     @@all << self
-    patient.appointments << self
-    doctor.appointments << self
-    doctor.patients << patient
-    patient.doctors << doctor
   end
 
   def self.all
