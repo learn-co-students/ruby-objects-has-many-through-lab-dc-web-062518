@@ -1,11 +1,13 @@
 require 'pry'
 class Patient
   @@all = []
+
   attr_accessor :name, :appointments
 
   def initialize(name)
     @name = name
     @@all << self
+    @appointments = []
   end
 
   def self.all
@@ -13,8 +15,10 @@ class Patient
   end
 
   def new_appointment(doctor, date)
-    self.appointments = Appointment.new(date, doctor, self)
-# binding.pry
+    
+    app = Appointment.new(date, doctor, self)
+    @appointments << app
+    app
   end
 
   def doctors

@@ -18,13 +18,12 @@ class Artist
 
   def songs
     Song.all.select do |song|
-      song.artist.name == @name
+      song.artist == self
     end
   end
 
   def genres
     self.songs.map do |song|
-      #binding.pry
       song.genre
     end
   end
